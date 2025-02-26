@@ -1,29 +1,60 @@
 <?php
-// Verifica se o formulário foi enviado via POST, conforme podemos ver na 'Action' do forms (form.pgp)
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Grava os dados enviados
-    $nome = $_REQUEST['nome'];
-    $telefone = $_REQUEST['telefone'];
-    $email = $_REQUEST['email'];
-    $mensagem = $_REQUEST['mensagem'];
+// Captura o método da requisição (GET ou POST)
+$metodo = $_SERVER["REQUEST_METHOD"];
 
-    // Exibe na tela para o usuário 
-    echo "<h1>Dados Recebidos</h1>";
-    echo "<p><strong>Nome:</strong> " . htmlspecialchars($nome) . "</p>";
-    echo "<p><strong>Telefone:</strong> " . htmlspecialchars($telefone) . "</p>";
-    echo "<p><strong>E-mail:</strong> " . htmlspecialchars($email) . "</p>";
-    echo "<p><strong>Mensagem:</strong> " . nl2br(htmlspecialchars($mensagem)) . "</p>";
+// Captura os cabeçalhos da requisição
+$cabecalhos = getallheaders();
 
-    // Exibe  requisição HTTP
-    echo "<h2>Cabeçalho da Requisição HTTP:</h2>";
-    echo "<pre>";
-    print_r(getallheaders());
-    echo "</pre>";
+// Captura os dados enviados no formulário
+$dados = ($metodo === "POST") ? $_POST : $_GET;
 
-    // grava e exibe o método utilizado na requisição
-    echo "<p><strong>Método utilizado na requisição:</strong> " . $_SERVER['REQUEST_METHOD'] . "</p>";
-} else {
-    echo "<p>O formulário não foi enviado corretamente.</p>";
-}
 ?>
-<a href="Formulario.php">Voltar</a>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado do Envio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            background: white;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #444;
+        }
+        pre {
+            text-align: left;
+            background: #eee;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Dados Recebidos</h2>
+    <p><strong>Método Utilizado:</strong> <?php echo $metodo; ?></p>
+
+    <h3>Dados Enviados:</h3>
+    <pre><?php print_r($dados); ?></pre>
+
+    <h3>Cabeçalhos da Requisição:</h3>
+    <pre><?php print_r($cabecalhos); ?></pre>
+</div>
+
+</body>
+</html>
