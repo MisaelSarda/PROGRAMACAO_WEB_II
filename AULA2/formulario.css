@@ -13,7 +13,6 @@ h1 {
     color: #333;
 }
 
-/* Container para alinhar os formulários lado a lado */
 .container {
     display: flex;
     justify-content: center;

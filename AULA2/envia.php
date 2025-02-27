@@ -1,11 +1,8 @@
 <?php
-// Captura o método da requisição (GET ou POST)
 $metodo = $_SERVER["REQUEST_METHOD"];
 
-// Captura os cabeçalhos da requisição
 $cabecalhos = getallheaders();
 
-// Captura os dados enviados no formulário
 $dados = ($metodo === "POST") ? $_POST : $_GET;
 
 ?>

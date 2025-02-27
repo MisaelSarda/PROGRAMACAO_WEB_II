@@ -10,7 +10,6 @@
     <h1>Formulário de Cadastro</h1>
 
     <div class="container">
-        <!-- Formulário GET -->
         <div class="form-box">
             <h2>Enviar via GET</h2>
             <form action="envia.php" method="GET">
@@ -30,7 +29,6 @@
             </form>
         </div>
 
-        <!-- Formulário POST -->
         <div class="form-box">
             <h2>Enviar via POST</h2>
             <form action="envia.php" method="POST">
